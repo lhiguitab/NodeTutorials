@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
   <div class="bg-gray-100 min-h-screen">
     <div class="flex h-screen overflow-hidden">
-
       <!-- Sidebar -->
       <aside class="w-64 bg-gray-800 text-white shadow-lg fixed h-full flex flex-col">
         <div class="p-6 flex-1">
-
           <div class="flex items-center mb-8">
             <i class="fas fa-graduation-cap text-2xl mr-3 text-blue-400"></i>
             <span class="font-bold text-xl">Library Dashboard</span>
@@ -31,6 +29,13 @@ import { RouterLink, RouterView } from 'vue-router'
               <i class="fas fa-info-circle mr-3"></i>
               <span>About</span>
             </RouterLink>
+            <RouterLink
+              to="/books"
+              class="flex items-center px-4 py-3 rounded-lg hover:bg-gray-700 transition duration-200"
+            >
+              <i class="fas fa-book mr-3"></i>
+              <span>Books</span>
+            </RouterLink>
           </nav>
         </div>
 
@@ -51,7 +56,6 @@ import { RouterLink, RouterView } from 'vue-router'
 
       <!-- Main content area -->
       <div class="flex-1 flex flex-col overflow-hidden ml-64">
-
         <!-- Top header -->
         <header class="bg-white shadow-sm border-b border-gray-200">
           <div class="px-6 py-4 flex items-center justify-between">
@@ -79,7 +83,6 @@ import { RouterLink, RouterView } from 'vue-router'
         <main class="flex-1 overflow-y-auto p-6">
           <RouterView />
         </main>
-
       </div>
     </div>
   </div>
