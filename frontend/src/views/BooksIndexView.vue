@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { BookService } from '@/services/BookService.js'; 
-import OtherService from '@/services/OtherService.js'; 
-import { ref, watch } from 'vue'; 
+import { BookService } from '@/services/BookService.js';
+import OtherService from '@/services/OtherService.js';
+import { ref, watch } from 'vue';
 
 const books = BookService.getBooks();
-const filteredBooks = ref(books); 
+const filteredBooks = ref(books);
 
-// selectors 
-const selectorCategories = OtherService.getUniqueBookCategories(); 
-const selectedCategory = ref(''); 
+// selectors
+const selectorCategories = OtherService.getUniqueBookCategories();
+const selectedCategory = ref('');
 
 // functions
 function formatToCOP(price: number): string {
@@ -19,41 +19,41 @@ function formatToCOP(price: number): string {
     maximumFractionDigits: 0,
   });
 
-  return formatter
-    .format(price)
-    .replace(/^\s*\$\s?/, '');
+  return formatter.format(price).replace(/^\s*\$\s?/, '');
 }
 
-// watchers 
+// watchers
 
-watch(selectedCategory, (newCategory) => { 
-  if (newCategory) { 
-    filteredBooks.value = books.filter((book) => book.category === newCategory); 
-  } else { 
-    filteredBooks.value = books; 
-  } 
-}); 
-
+watch(selectedCategory, (newCategory) => {
+  if (newCategory) {
+    filteredBooks.value = books.filter((book) => book.category === newCategory);
+  } else {
+    filteredBooks.value = books;
+  }
+});
 </script>
 
 <template>
   <section>
     <div class="max-w-7xl mx-auto">
-        <div class="flex justify-end mb-6"> 
-        <RouterLink 
-            to="/books/create" 
-            class="inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-700 transition" 
-            >+ Add Book</RouterLink 
-        > 
+      <div class="flex justify-end mb-6">
+        <RouterLink
+          to="/books/create"
+          class="inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-700 transition"
+          >+ Add Book</RouterLink
+        >
       </div>
 
-      <div class="flex justify-end mb-6"> 
-        <select v-model="selectedCategory" class="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"> 
-          <option value="">All Categories</option> 
-          <option v-for="category in selectorCategories" :key="category" :value="category"> 
-            {{ category }} 
-          </option> 
-        </select> 
+      <div class="flex justify-end mb-6">
+        <select
+          v-model="selectedCategory"
+          class="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
+        >
+          <option value="">All Categories</option>
+          <option v-for="category in selectorCategories" :key="category" :value="category">
+            {{ category }}
+          </option>
+        </select>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import BookReviews from '@/components/BookReviews.vue'; 
-import { BookService } from '@/services/BookService.js'; 
+import BookReviews from '@/components/BookReviews.vue';
+import { BookService } from '@/services/BookService.js';
 import { useRoute } from 'vue-router';
 const route = useRoute();
 const bookId = Number(route.params.id);
-const book = BookService.getBookById(bookId); 
+const book = BookService.getBookById(bookId);
 
 // functions
 function formatToCOP(price: number): string {
@@ -17,7 +17,6 @@ function formatToCOP(price: number): string {
 
   return formatter.format(price).replace(/^\s*\$\s?/, '');
 }
-
 </script>
 
 <template>
@@ -82,9 +81,9 @@ function formatToCOP(price: number): string {
                   <span class="font-medium">
                     {{ book.stock }}
                   </span>
-                  <div class="bg-white rounded-lg shadow-md p-6 mt-8"> 
-                    <BookReviews :book-id="book.id" /> 
-                  </div> 
+                  <div class="bg-white rounded-lg shadow-md p-6 mt-8">
+                    <BookReviews :book-id="book.id" />
+                  </div>
                 </div>
               </div>
             </div>

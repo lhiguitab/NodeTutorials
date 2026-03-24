@@ -6,9 +6,7 @@ const props = defineProps<{
   bookId: number;
 }>();
 
-const reviews = computed(() =>
-  ReviewService.getReviewsByBookId(props.bookId)
-);
+const reviews = computed(() => ReviewService.getReviewsByBookId(props.bookId));
 
 const form = ref({
   rating: 5,
@@ -55,12 +53,7 @@ function formatDate(iso?: string): string {
 
       <form @submit.prevent="submitReview" class="space-y-3">
         <div>
-          <label
-            for="rating"
-            class="block text-sm text-gray-600 mb-1"
-          >
-            Rating
-          </label>
+          <label for="rating" class="block text-sm text-gray-600 mb-1"> Rating </label>
 
           <select
             id="rating"
@@ -68,23 +61,12 @@ function formatDate(iso?: string): string {
             class="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
             required
           >
-            <option
-              v-for="n in 5"
-              :key="n"
-              :value="n"
-            >
-              {{ n }} star{{ n > 1 ? 's' : '' }}
-            </option>
+            <option v-for="n in 5" :key="n" :value="n">{{ n }} star{{ n > 1 ? 's' : '' }}</option>
           </select>
         </div>
 
         <div>
-          <label
-            for="comment"
-            class="block text-sm text-gray-600 mb-1"
-          >
-            Comment
-          </label>
+          <label for="comment" class="block text-sm text-gray-600 mb-1"> Comment </label>
 
           <textarea
             id="comment"
@@ -97,10 +79,7 @@ function formatDate(iso?: string): string {
         </div>
 
         <div>
-          <label
-            for="author"
-            class="block text-sm text-gray-600 mb-1"
-          >
+          <label for="author" class="block text-sm text-gray-600 mb-1">
             Your name (optional)
           </label>
 
@@ -134,10 +113,7 @@ function formatDate(iso?: string): string {
             {{ review.author || 'Anonymous' }}
           </span>
 
-          <span
-            class="text-amber-500 text-sm"
-            :title="`${review.rating} stars`"
-          >
+          <span class="text-amber-500 text-sm" :title="`${review.rating} stars`">
             {{ '★'.repeat(review.rating) }}{{ '☆'.repeat(5 - review.rating) }}
           </span>
         </div>
@@ -146,18 +122,12 @@ function formatDate(iso?: string): string {
           {{ review.comment }}
         </p>
 
-        <p
-          v-if="review.createdAt"
-          class="text-gray-400 text-xs mt-2"
-        >
+        <p v-if="review.createdAt" class="text-gray-400 text-xs mt-2">
           {{ formatDate(review.createdAt) }}
         </p>
       </li>
 
-      <li
-        v-if="reviews.length === 0"
-        class="text-gray-500 text-sm py-4"
-      >
+      <li v-if="reviews.length === 0" class="text-gray-500 text-sm py-4">
         No reviews yet. Be the first to review!
       </li>
     </ul>
